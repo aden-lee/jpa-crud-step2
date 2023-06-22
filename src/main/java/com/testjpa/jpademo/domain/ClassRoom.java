@@ -16,19 +16,19 @@ import org.hibernate.annotations.UpdateTimestamp;
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
-public class ClassRoom {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class ClassRoom { // 테이블명과 매핑됨 -> class_room으로 치환됨.
+    @Id //PK 설정
+    @GeneratedValue(strategy = GenerationType.IDENTITY) //Auto Increment 설정
     private int cid;
 
     private String className;
 
     private String teacher;
 
-    @CreationTimestamp
+    @CreationTimestamp // insert 시점 시간자동입력
     private String created;
 
-    @UpdateTimestamp
+    @UpdateTimestamp // update 시점 시간 자동입력
     private String updated;
 
     @Builder
@@ -38,6 +38,7 @@ public class ClassRoom {
         this.teacher = teacher;
     }
 
+    //update api 호출에서 사용
     public void update (int cid, String className, String teacher) {
         this.cid = cid;
         this.className = className;
